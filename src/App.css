@@ -28,6 +28,44 @@
   color: #61dafb;
 }
 
+li {
+  list-style: none;
+}
+ul {
+  margin: 10px;
+}
+footer {
+  margin-left: 200px;
+}
+.nav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  background-color: white;
+  top: 0;
+}
+.nav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+  border-bottom: solid black 2px;
+  border-right: solid black 2px;
+}
+.nav a:hover {
+  color: rgb(10, 88, 233);
+}
+.avatar {
+  margin-left: 30px;
+}
+.todo-list {
+  text-align: center;
+}
+.add-todo {
+  margin-top: 50px;
+  margin-left: 50px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
