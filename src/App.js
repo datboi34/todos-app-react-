@@ -1,41 +1,57 @@
 import React from "react";
 import "./App.css";
 
+const todoList = [
+  {
+    id: 1,
+    title: "Skateboard",
+    description: "Go skateboarding",
+    completed: false,
+  },
+  {
+    id: 2,
+    title: "Bike",
+    description: "Go biking",
+    completed: false,
+  },
+  {
+    id: 3,
+    title: "Fish",
+    description: "Go fishing",
+    completed: false,
+  },
+];
+const user = {
+  username: "Freddy",
+  image: "https://img.icons8.com/dusk/64/000000/cat-profile.png",
+};
 function App() {
   return (
     <>
-      <nav class="nav">
+      <nav className="nav">
         <a href="#">
-          <img
-            class="avatar"
-            src="https://img.icons8.com/dusk/64/000000/cat-profile.png"
-          />
+          <img className="avatar" src={user.image} />
+          <p className="user">{user.username}</p>
         </a>
         <a href="#">Completed</a>
         <a href="#">Options</a>
         <a href="#">Contact</a>
       </nav>
-      <div class="todo-list">
+      <div className="todo-list">
         <h1>Todo List</h1>
         <ul class="Weekly-duties">
-          <li>
-            <input type="checkbox" />
-            Buy eggs
-          </li>
-          <li>
-            {" "}
-            <input type="checkbox" />
-            Bacon eat
-          </li>
-          <li>
-            {" "}
-            <input type="checkbox" />
-            Go to the bank
-          </li>
+          {todoList.map((todo) => {
+            return (
+              <li>
+                <p>{todo.description}</p>
+                <input type="checkbox" />
+              </li>
+            );
+          })}
         </ul>
         <a href="#">
           <img
-            class="add-todo"
+            className="add-todo"
             src="https://img.icons8.com/ios-filled/100/000000/plus.png"
           />
         </a>
