@@ -1,5 +1,8 @@
 import React from "react";
 import "./App.css";
+import Nav from "./COMPONENTS/Nav";
+import Footer from "./COMPONENTS/Footer";
+import TodoItem from "./COMPONENTS/TodoItem";
 
 const todoList = [
   {
@@ -21,43 +24,16 @@ const todoList = [
     completed: false,
   },
 ];
-const user = {
-  username: "Freddy",
-  image: "https://img.icons8.com/dusk/64/000000/cat-profile.png",
-};
 
 function App() {
   return (
     <>
-      <nav style={navbar.nav}>
-        <a style={navbar.nav_a} href="#">
-          <img style={Styles.avatar} src={user.image} />
-          <p style={Styles.user}>{user.username}</p>
-        </a>
-        <a style={navbar.nav_a} href="#">
-          Completed
-        </a>
-        <a style={navbar.nav_a} href="#">
-          Options
-        </a>
-        <a style={navbar.nav_a} href="#">
-          Contact
-        </a>
-      </nav>
+      <Nav user={user} Styles={Styles} />
       <div style={Styles.todo_list}>
         <h1>Todo List</h1>
         <ul style={universal.ul}>
           {todoList.map((todo) => {
-            return (
-              <li style={universal.ul}>
-                <p style={universal.ul}>{todo.description}</p>
-                <input
-                  style={universal.ul}
-                  type="checkbox"
-                  checked={todoList.completed}
-                />
-              </li>
-            );
+            return <TodoItem universal={universal} todoList={todo} />;
           })}
         </ul>
         <a href="#">
@@ -68,19 +44,7 @@ function App() {
         </a>
       </div>
 
-      <footer>
-        <h4 style={universal.footer}> Icons obtained from:</h4>
-        <a
-          style={universal.footer}
-          href="https://icons8.com/icon/46393/cat-profile"
-        >
-          Cat Profile iconbyIcons8
-          <br></br>
-        </a>
-        <a style={universal.footer} href="https://icons8.com/icon/11255/plus">
-          Plus icon by Icons8
-        </a>
-      </footer>
+      <Footer universal={universal} />
     </>
   );
 }
@@ -96,28 +60,6 @@ const universal = {
   },
   footer: {
     marginLeft: "200px",
-  },
-};
-
-const navbar = {
-  nav: {
-    height: "100%",
-    width: "160px",
-    position: "fixed",
-    backgroundColor: "white",
-    top: "0",
-  },
-  nav_a: {
-    padding: "6px 8px 6px 16px",
-    textDecoration: "none",
-    fontSize: "25px",
-    color: "black",
-    display: "block",
-    borderBottom: "solid black 2px",
-    borderRight: "solid black 2px",
-  },
-  nav_a_hover: {
-    color: "blue",
   },
 };
 
@@ -141,5 +83,10 @@ const Styles = {
   todo_list: {
     textAlign: "center",
   },
+};
+
+const user = {
+  username: "Freddy",
+  image: "https://img.icons8.com/dusk/64/000000/cat-profile.png",
 };
 export default App;
