@@ -4,49 +4,75 @@ import Nav from "./COMPONENTS/Nav";
 import Footer from "./COMPONENTS/Footer";
 import TodoItem from "./COMPONENTS/TodoItem";
 
-const todoList = [
-  {
-    id: 1,
-    title: "Skateboard",
-    description: "Go skateboarding",
-    completed: false,
-  },
-  {
-    id: 2,
-    title: "Bike",
-    description: "Go biking",
-    completed: false,
-  },
-  {
-    id: 3,
-    title: "Fish",
-    description: "Go fishing",
-    completed: false,
-  },
-];
+class App extends React.Component {
+  state = {
+    user: {
+      username: "Freddy",
+      image: "https://img.icons8.com/dusk/64/000000/cat-profile.png",
+    },
+    todoList: [
+      {
+        id: 1,
+        title: "Skateboard",
+        description: "Go skateboarding",
+        completed: false,
+      },
+      {
+        id: 2,
+        title: "Bike",
+        description: "Go biking",
+        completed: false,
+      },
+      {
+        id: 3,
+        title: "Fish",
+        description: "Go fishing",
+        completed: false,
+      },
+    ],
+    newTodoDescription: "",
+  };
+  handleChangeTodo = (event) => {
+    const value = event.target.value;
+    this.setState({ newTodoDescription: value });
+  };
+  handleAddNewTodo = () => {
+    this.setState((state) => {
+      return {
+        todoList: [
+          ...state.todoList,
+          { id: 3, description: state.newTodoDescription, completed: false },
+        ],
+      };
+    });
+  };
+  render() {
+    return (
+      <>
+        <Nav user={this.state.user} Styles={Styles} />
+        <div style={Styles.todo_list}>
+          <h1>Todo List</h1>
+          <ul style={universal.ul}>
+            {this.state.todoList.map((todo) => {
+              return <TodoItem universal={universal} todoList={todo} />;
+            })}
+          </ul>
 
-function App() {
-  return (
-    <>
-      <Nav user={user} Styles={Styles} />
-      <div style={Styles.todo_list}>
-        <h1>Todo List</h1>
-        <ul style={universal.ul}>
-          {todoList.map((todo) => {
-            return <TodoItem universal={universal} todoList={todo} />;
-          })}
-        </ul>
-        <a href="#">
-          <img
-            style={img.plusImg}
-            src="https://img.icons8.com/ios-filled/100/000000/plus.png"
-          />
-        </a>
-      </div>
+          <input
+            type="text"
+            onChange={this.handleChangeTodo}
+            value={this.state.newTodoDescription}
+          ></input>
+          <button onClick={this.handleAddNewTodo} style={Styles.newIteminput}>
+            {" "}
+            Add New Todo{" "}
+          </button>
+        </div>
 
-      <Footer universal={universal} />
-    </>
-  );
+        <Footer universal={universal} />
+      </>
+    );
+  }
 }
 const universal = {
   h1: {
@@ -59,7 +85,8 @@ const universal = {
     margin: "10px",
   },
   footer: {
-    marginLeft: "200px",
+    marginTop: "100px",
+    marginLeft: "100px",
   },
 };
 
@@ -83,10 +110,9 @@ const Styles = {
   todo_list: {
     textAlign: "center",
   },
+  newIteminput: {
+    marginTop: "50px",
+  },
 };
 
-const user = {
-  username: "Freddy",
-  image: "https://img.icons8.com/dusk/64/000000/cat-profile.png",
-};
 export default App;
